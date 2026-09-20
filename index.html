@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prevyn | Dashboard Ford</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-mark">
+          <img src="./assets/prevyn-logo.png" alt="Prevyn" />
+        </span>
+        <div>
+          <strong>Prevyn</strong>
+          <small>VIN Share Intelligence</small>
+        </div>
+      </div>
+
+      <nav aria-label="Navegação principal">
+        <button class="nav-button active" data-view="overview">Visão geral</button>
+        <button class="nav-button" data-view="clients">Clientes em risco</button>
+        <button class="nav-button" data-view="leads">Leads proativos</button>
+        <button class="nav-button" data-view="campaigns">Campanhas</button>
+      </nav>
+
+      <div class="side-note">
+        <span>Score atualizado</span>
+        <strong>12 set. 2026</strong>
+        <small>Dados simulados para MVP</small>
+      </div>
+    </aside>
+
+    <main class="app">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Dashboard Ford / Concessionária</p>
+          <h1 id="viewTitle">Retenção preditiva por VIN</h1>
+          <p id="viewSubtitle">Identifique clientes em risco e acione a próxima melhor ação.</p>
+        </div>
+        <div class="top-actions">
+          <input id="searchInput" type="search" placeholder="Buscar cliente, VIN ou modelo" />
+          <select id="dealerFilter" aria-label="Filtrar concessionária">
+            <option value="all">Todas as concessionárias</option>
+            <option value="Ford Lapa">Ford Lapa</option>
+            <option value="Ford Morumbi">Ford Morumbi</option>
+            <option value="Ford Campinas">Ford Campinas</option>
+          </select>
+          <button id="generateLeads">Gerar leads</button>
+        </div>
+      </header>
+
+      <section class="metrics" aria-label="Indicadores">
+        <article>
+          <span>VIN Share atual</span>
+          <strong id="vinShare">68%</strong>
+          <small class="good">+4 p.p. potencial</small>
+        </article>
+        <article>
+          <span>Clientes em risco</span>
+          <strong id="riskCount">0</strong>
+          <small>alto ou médio risco</small>
+        </article>
+        <article>
+          <span>Receita em risco</span>
+          <strong id="revenueRisk">R$ 0</strong>
+          <small>base: 5 revisões</small>
+        </article>
+        <article>
+          <span>Leads prontos</span>
+          <strong id="leadCount">0</strong>
+          <small class="good">ações priorizadas</small>
+        </article>
+      </section>
+
+      <section class="view active" id="overview">
+        <section class="workspace">
+          <section class="panel wide">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">Fila de prioridade</p>
+                <h2>Clientes com maior risco de evasão</h2>
+              </div>
+              <div class="legend">
+                <span><i class="high"></i> Alto</span>
+                <span><i class="medium"></i> Médio</span>
+                <span><i class="low"></i> Baixo</span>
+              </div>
+            </div>
+            <div class="table compact">
+              <div class="table-row table-header">
+                <span>Cliente / VIN</span>
+                <span>Modelo</span>
+                <span>Dealer</span>
+                <span>Score</span>
+                <span>Próxima ação</span>
+              </div>
+              <div id="customerRows"></div>
+            </div>
+          </section>
+
+          <aside class="panel detail" id="detailPanel">
+            <p class="eyebrow">Caso selecionado</p>
+            <h2 id="detailName">Selecione um cliente</h2>
+            <p class="muted" id="detailVehicle">Clique em uma linha para abrir a análise por VIN.</p>
+            <div class="score-ring" aria-label="Score Prevyn">
+              <span id="detailScore">--</span>
+              <small>Score Prevyn</small>
+            </div>
+            <div class="reason-list" id="reasonList"></div>
+            <div class="action-box">
+              <span>Plano de ação</span>
+              <strong id="detailAction">Aguardando seleção</strong>
+              <p id="detailMessage">O sistema recomenda a melhor abordagem para preservar o vínculo com o cliente.</p>
+            </div>
+          </aside>
+        </section>
+
+        <section class="bottom-grid">
+          <article class="panel">
+            <p class="eyebrow">Modelos críticos</p>
+            <h2>Risco médio por linha</h2>
+            <div class="bars" id="modelBars"></div>
+          </article>
+          <article class="panel">
+            <p class="eyebrow">Impacto potencial</p>
+            <h2>Recuperação estimada</h2>
+            <div class="impact">
+              <strong id="impactValue">R$ 29,2 mi</strong>
+              <span id="impactText">receita preservada ao recuperar 5 p.p. de VIN Share.</span>
+            </div>
+            <div class="scenario-buttons">
+              <button data-points="3">3 p.p.</button>
+              <button class="active" data-points="5">5 p.p.</button>
+              <button data-points="10">10 p.p.</button>
+            </div>
+          </article>
+          <article class="panel">
+            <p class="eyebrow">Mensagem para o app</p>
+            <h2>Comunicação proativa</h2>
+            <p class="app-message" id="appMessage">
+              Identificamos um ponto importante de manutenção. Agende seu check-up preventivo na rede Ford.
+            </p>
+          </article>
+        </section>
+      </section>
+
+      <section class="view" id="clients">
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Análise por cliente</p>
+              <h2>Risco de evasão explicado</h2>
+            </div>
+            <select id="riskFilter" aria-label="Filtrar risco">
+              <option value="all">Todos os riscos</option>
+              <option value="high">Alto risco</option>
+              <option value="medium">Médio risco</option>
+              <option value="low">Baixo risco</option>
+            </select>
+          </div>
+          <div class="client-grid" id="clientCards"></div>
+        </section>
+      </section>
+
+      <section class="view" id="leads">
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Próxima melhor ação</p>
+              <h2>Leads proativos para a concessionária</h2>
+            </div>
+            <span class="status-pill" id="leadStatus">4 leads aguardando</span>
+          </div>
+          <div class="lead-list" id="leadList"></div>
+        </section>
+      </section>
+
+      <section class="view" id="campaigns">
+        <section class="campaign-layout">
+          <article class="panel">
+            <p class="eyebrow">Relacionamento com consentimento</p>
+            <h2>Campanhas orientadas por contexto</h2>
+            <p class="panel-copy">
+              O cliente escolhe no app quais comunicações deseja receber. A concessionária usa isso para ser relevante, não invasiva.
+            </p>
+            <div class="campaign-list" id="campaignList"></div>
+          </article>
+          <article class="panel">
+            <p class="eyebrow">Campanha selecionada</p>
+            <h2 id="campaignTitle">Pré-viagem</h2>
+            <p class="muted" id="campaignDescription">Check-up preventivo para clientes com viagem informada no app.</p>
+            <div class="campaign-metrics">
+              <span><strong id="campaignAudience">1.240</strong> clientes elegíveis</span>
+              <span><strong id="campaignConversion">18%</strong> conversão estimada</span>
+              <span><strong id="campaignRevenue">R$ 2,6 mi</strong> receita potencial</span>
+            </div>
+            <button id="activateCampaign">Ativar campanha piloto</button>
+          </article>
+        </section>
+      </section>
+
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
