@@ -18,6 +18,25 @@ const customers = [
     ],
     message:
       "Ana, identificamos um ponto importante de manutenção na sua Ranger. Agende um check-up preventivo na Ford Lapa e preserve sua cobertura.",
+    phone: "5511987654321",
+    aiPlan: {
+      generatedAt: "22 set. 2026 às 09:12",
+      confidence: 94,
+      tone: "Consultivo, com senso de urgência",
+      channel: "WhatsApp",
+      bestWindow: "Hoje, entre 17h e 19h",
+      actionable: true,
+      summary:
+        "Ana está no grupo de maior risco de evasão: revisão obrigatória atrasada há 62 dias e garantia vencendo em 5 meses. Ação imediata reduz a chance de ela buscar uma oficina independente.",
+      steps: [
+        "Reconhecer o vínculo com a Ranger e o histórico de manutenção",
+        "Alertar sobre a revisão atrasada sem soar como cobrança",
+        "Oferecer 2 horários prioritários com busca e entrega do veículo",
+        "Reforçar que a garantia Ford Protect segue válida se a revisão for feita em até 15 dias",
+      ],
+      whatsappMessage:
+        "Oi Ana! Aqui é o assistente Predit da Ford Lapa 👋 Notei que a revisão da sua Ranger está com 62 dias de atraso e sua garantia vence em breve. Posso te ajudar a agendar um horário essa semana, com busca e entrega no seu endereço?",
+    },
   },
   {
     name: "Rafael Lima",
@@ -37,6 +56,25 @@ const customers = [
     ],
     message:
       "Rafael, sua Bronco está próxima de uma janela recomendada de inspeção. Reserve um horário com prioridade na Ford Morumbi.",
+    phone: "5511976543210",
+    aiPlan: {
+      generatedAt: "22 set. 2026 às 08:47",
+      confidence: 88,
+      tone: "Direto, focado no uso do veículo",
+      channel: "WhatsApp",
+      bestWindow: "Amanhã, entre 9h e 11h",
+      actionable: true,
+      summary:
+        "Rafael está há 8 meses sem passar pela rede e informou uso severo no app. Perfil de risco por desgaste acelerado sem inspeção preventiva.",
+      steps: [
+        "Citar o uso severo informado no app Ford Connect",
+        "Explicar o risco de desgaste em itens críticos sem inspeção",
+        "Oferecer inspeção preventiva com peça técnica já reservada",
+        "Disponibilizar horário de fim de semana para reduzir fricção",
+      ],
+      whatsappMessage:
+        "Rafael, tudo bem? Aqui é o assistente Predit da Ford Morumbi. Vimos que sua Bronco está há 8 meses sem passar por uma inspeção e identificamos uso mais intenso pelo app. Posso reservar um horário com a peça já separada pra você?",
+    },
   },
   {
     name: "Marina Costa",
@@ -56,6 +94,25 @@ const customers = [
     ],
     message:
       "Marina, temos uma condição especial para sua próxima revisão na rede Ford. Agende pelo app e acompanhe tudo por aqui.",
+    phone: "5519998877665",
+    aiPlan: {
+      generatedAt: "22 set. 2026 às 10:03",
+      confidence: 81,
+      tone: "Empático, recuperação de relacionamento",
+      channel: "WhatsApp",
+      bestWindow: "Hoje, após 18h",
+      actionable: true,
+      summary:
+        "Marina não retornou após a última campanha e está com a revisão fora do prazo e garantia terminando em 72 dias. Precisa de uma abordagem que reconstrua a confiança.",
+      steps: [
+        "Reconhecer que o último contato não teve retorno, sem soar como cobrança",
+        "Oferecer uma condição exclusiva de retorno",
+        "Reforçar o prazo da garantia como urgência real, não pressão comercial",
+        "Confirmar disponibilidade antes de sugerir horários",
+      ],
+      whatsappMessage:
+        "Oi Marina! Aqui é o assistente Predit da Ford Campinas. Vi que não conseguimos falar com você na última campanha — sem problemas! Sua garantia vence em 72 dias e temos uma condição especial pra próxima revisão. Posso te mostrar as opções?",
+    },
   },
   {
     name: "Bruno Martins",
@@ -75,6 +132,25 @@ const customers = [
     ],
     message:
       "Bruno, sua próxima revisão está chegando. A rede Ford pode preparar um atendimento premium para manter seu Mustang em alta performance.",
+    phone: "5511965432198",
+    aiPlan: {
+      generatedAt: "22 set. 2026 às 07:55",
+      confidence: 76,
+      tone: "Premium, exclusivo",
+      channel: "WhatsApp",
+      bestWindow: "Hoje, entre 12h e 14h",
+      actionable: true,
+      summary:
+        "Bruno tem baixo engajamento no app, mas alto valor de recompra. A abordagem precisa ser exclusiva para não parecer um lembrete genérico.",
+      steps: [
+        "Tratar como cliente premium, citando o perfil do Mustang",
+        "Oferecer atendimento exclusivo fora do horário comercial padrão",
+        "Evitar linguagem de 'lembrete' e focar em experiência",
+        "Convidar para um test-drive de um novo lançamento como gancho",
+      ],
+      whatsappMessage:
+        "Bruno, tudo certo? Aqui é o assistente Predit da Ford Morumbi. Preparamos um atendimento exclusivo para o seu Mustang, com horário reservado e sem espera. Quer que eu já separe um horário essa semana?",
+    },
   },
   {
     name: "Camila Rocha",
@@ -94,6 +170,23 @@ const customers = [
     ],
     message:
       "Camila, sua Ranger está com manutenção em dia. Continue acompanhando seus alertas pelo app Ford Connect.",
+    phone: "5511991234567",
+    aiPlan: {
+      generatedAt: "22 set. 2026 às 06:30",
+      confidence: 97,
+      tone: "Informativo, sem necessidade de ação",
+      channel: "App",
+      bestWindow: "Não é necessário contato ativo",
+      actionable: false,
+      summary:
+        "Camila está com tudo em dia. O agente recomenda apenas manter as notificações automáticas ativas, sem abordagem direta agora.",
+      steps: [
+        "Manter lembretes automáticos ativos no app",
+        "Nenhuma ação humana necessária neste momento",
+        "Reavaliar em 90 dias ou se o score subir acima de 55%",
+      ],
+      whatsappMessage: "",
+    },
   },
   {
     name: "Diego Nunes",
@@ -113,6 +206,25 @@ const customers = [
     ],
     message:
       "Diego, sua primeira revisão está chegando. Agende pelo app e mantenha seu Territory protegido pela rede Ford.",
+    phone: "5519987651234",
+    aiPlan: {
+      generatedAt: "22 set. 2026 às 09:40",
+      confidence: 84,
+      tone: "Acolhedor, boas-vindas",
+      channel: "WhatsApp",
+      bestWindow: "Hoje, entre 15h e 17h",
+      actionable: true,
+      summary:
+        "Diego é cliente novo, ainda sem vínculo com a concessionária, e está com baixa abertura de notificações. A primeira revisão é o momento-chave para criar relacionamento.",
+      steps: [
+        "Dar boas-vindas à rede Ford, sem tom comercial",
+        "Explicar a importância da primeira revisão de forma simples",
+        "Oferecer atendimento consultivo, apresentando o consultor por nome",
+        "Convidar para conhecer o app Ford Connect",
+      ],
+      whatsappMessage:
+        "Oi Diego! Aqui é o assistente Predit da Ford Campinas. Seja bem-vindo à rede Ford! Sua primeira revisão do Territory está próxima e eu posso te ajudar a agendar com um consultor dedicado. Quer que eu já verifique os horários disponíveis?",
+    },
   },
 ];
 
@@ -175,6 +287,12 @@ function riskLabel(score) {
   if (score >= 75) return "Alto";
   if (score >= 55) return "Médio";
   return "Baixo";
+}
+
+function riskColorVar(level) {
+  if (level === "high") return "var(--red)";
+  if (level === "medium") return "var(--yellow)";
+  return "var(--green)";
 }
 
 function filteredCustomers() {
@@ -241,10 +359,10 @@ function selectCustomer(vin) {
   byId("detailName").textContent = customer.name;
   byId("detailVehicle").textContent = `${customer.model} | ${customer.vin} | ${customer.dealer}`;
   byId("detailScore").textContent = `${customer.score}%`;
-  byId("detailAction").textContent = customer.action;
-  byId("detailMessage").textContent =
-    "Priorizar contato consultivo antes que o cliente procure uma oficina independente.";
   byId("appMessage").textContent = customer.message;
+
+  const ringColor = riskColorVar(riskLevel(customer.score));
+  byId("scoreRing").style.background = `conic-gradient(${ringColor} ${customer.score}%, var(--line-strong) 0)`;
 
   const reasonList = byId("reasonList");
   reasonList.innerHTML = "";
@@ -254,8 +372,51 @@ function selectCustomer(vin) {
     reasonList.appendChild(item);
   });
 
+  renderAiPlan(customer);
   renderRows();
   renderClientCards();
+}
+
+function renderAiPlan(customer) {
+  const plan = customer.aiPlan;
+  if (!plan) return;
+
+  byId("aiConfidence").textContent = `${plan.confidence}% confiança`;
+  byId("aiSummary").textContent = plan.summary;
+  byId("aiTone").textContent = plan.tone;
+  byId("aiChannel").textContent = plan.channel;
+  byId("aiWindow").textContent = plan.bestWindow;
+  byId("aiGeneratedAt").textContent = `Gerado por Predit AI em ${plan.generatedAt}`;
+
+  const steps = byId("aiSteps");
+  steps.innerHTML = "";
+  plan.steps.forEach((step) => {
+    const item = document.createElement("li");
+    item.textContent = step;
+    steps.appendChild(item);
+  });
+
+  byId("aiWhatsappMessage").textContent =
+    plan.whatsappMessage || "Nenhuma abordagem ativa recomendada no momento.";
+
+  const button = byId("startWhatsapp");
+  button.disabled = !plan.actionable;
+  button.classList.toggle("disabled", !plan.actionable);
+  byId("whatsappBtnLabel").textContent = plan.actionable
+    ? "Iniciar abordagem no WhatsApp"
+    : "Sem ação recomendada agora";
+}
+
+function openWhatsappForCustomer(customer) {
+  const plan = customer.aiPlan;
+  if (!plan?.actionable) {
+    showToast(`${customer.name} está com baixo risco: nenhuma abordagem ativa recomendada agora.`);
+    return;
+  }
+
+  const url = `https://wa.me/${customer.phone}?text=${encodeURIComponent(plan.whatsappMessage)}`;
+  window.open(url, "_blank", "noopener");
+  showToast(`Agente de IA Predit iniciou abordagem no WhatsApp com ${customer.name}.`);
 }
 
 function renderModelBars() {
@@ -269,9 +430,10 @@ function renderModelBars() {
   byId("modelBars").innerHTML = Object.entries(modelGroups)
     .map(([model, scores]) => {
       const avg = Math.round(scores.reduce((sum, value) => sum + value, 0) / scores.length);
+      const level = riskLevel(avg);
       return `
-        <label>${model} <span>${avg}%</span></label>
-        <div><i style="width:${avg}%"></i></div>
+        <label>${model} <span class="${level}-text">${avg}%</span></label>
+        <div><i style="width:${avg}%; background: ${riskColorVar(level)}"></i></div>
       `;
     })
     .join("");
@@ -336,6 +498,7 @@ function renderLeads() {
         </div>
         <div class="lead-actions">
           <button data-action="app" data-vin="${customer.vin}">Enviar para app</button>
+          <button class="whatsapp-action" data-action="whatsapp" data-vin="${customer.vin}">Abordagem no WhatsApp</button>
           <button data-action="schedule" data-vin="${customer.vin}">Criar agendamento</button>
           <button data-action="done" data-vin="${customer.vin}">${customer.leadStatus}</button>
         </div>
@@ -403,7 +566,7 @@ function generateLeads() {
   });
   renderLeads();
   renderMetrics();
-  showToast("Leads priorizados com base no Score Prevyn.");
+  showToast("Leads priorizados com base no Score Predit.");
 }
 
 function renderAll() {
@@ -427,6 +590,11 @@ byId("activateCampaign").addEventListener("click", () => {
   showToast(`Campanha "${campaigns[selectedCampaign].title}" ativada como piloto.`);
 });
 
+byId("startWhatsapp").addEventListener("click", () => {
+  const customer = customers.find((item) => item.vin === selectedVin);
+  if (customer) openWhatsappForCustomer(customer);
+});
+
 document.querySelectorAll(".scenario-buttons button").forEach((button) => {
   button.addEventListener("click", () => updateImpact(Number(button.dataset.points)));
 });
@@ -440,6 +608,9 @@ byId("leadList").addEventListener("click", (event) => {
 
   if (button.dataset.action === "app") {
     showToast(`Mensagem enviada para o app de ${customer.name}.`);
+  }
+  if (button.dataset.action === "whatsapp") {
+    openWhatsappForCustomer(customer);
   }
   if (button.dataset.action === "schedule") {
     showToast(`Pré-agendamento criado para ${customer.dealer}.`);
