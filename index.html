@@ -10,7 +10,7 @@
     <aside class="sidebar">
       <div class="brand">
         <span class="brand-mark">
-          <img src="./assets/prevyn-logo.png" alt="Predit" />
+          <img src="./assets/predit-logo.png" alt="Predit" />
         </span>
         <div>
           <strong>Predit</strong>
@@ -22,6 +22,10 @@
         <button class="nav-button active" data-view="overview">Visão geral</button>
         <button class="nav-button" data-view="clients">Clientes em risco</button>
         <button class="nav-button" data-view="leads">Leads proativos</button>
+        <button class="nav-button" data-view="tracking">
+          Acompanhamento
+          <span class="nav-badge" id="trackingBadge" hidden>0</span>
+        </button>
         <button class="nav-button" data-view="campaigns">Campanhas</button>
       </nav>
 
@@ -117,26 +121,36 @@
                 <span class="ai-badge">Análise Predit AI</span>
                 <span class="ai-confidence" id="aiConfidence">-- confiança</span>
               </div>
-              <p class="ai-summary" id="aiSummary">Selecione um cliente para gerar o plano de abordagem.</p>
-              <div class="ai-meta">
-                <div><span>Tom recomendado</span><strong id="aiTone">--</strong></div>
-                <div><span>Canal</span><strong id="aiChannel">--</strong></div>
-                <div><span>Melhor horário</span><strong id="aiWindow">--</strong></div>
+              <div class="ai-plan-body" id="aiPlanBody">
+                <div class="ai-plan-body-inner">
+                  <p class="ai-summary" id="aiSummary">Selecione um cliente para gerar o plano de abordagem.</p>
+                  <div class="ai-meta">
+                    <div><span>Tom recomendado</span><strong id="aiTone">--</strong></div>
+                    <div><span>Canal</span><strong id="aiChannel">--</strong></div>
+                    <div><span>Melhor horário</span><strong id="aiWindow">--</strong></div>
+                  </div>
+                  <ol class="ai-steps" id="aiSteps"></ol>
+                  <div class="whatsapp-preview">
+                    <span>Primeira mensagem do agente (WhatsApp)</span>
+                    <p id="aiWhatsappMessage">--</p>
+                  </div>
+                </div>
               </div>
-              <ol class="ai-steps" id="aiSteps"></ol>
-              <div class="whatsapp-preview">
-                <span>Mensagem sugerida (WhatsApp)</span>
-                <p id="aiWhatsappMessage">--</p>
-              </div>
-              <button id="startWhatsapp" class="whatsapp-btn" type="button" disabled>
-                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
-                  <path
-                    fill="currentColor"
-                    d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96 0-2.66-1.04-5.16-2.92-7.04A9.9 9.9 0 0 0 12.04 2zm0 18.2h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.24 8.24 0 0 1-1.26-4.38c0-4.55 3.7-8.25 8.26-8.25 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.42 5.83c0 4.55-3.71 8.24-8.26 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.45-1.37-1.7-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.05 0 1.21.88 2.38 1 2.54.12.17 1.73 2.64 4.2 3.7.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.28z"
-                  />
+
+              <button class="ai-plan-toggle" id="aiPlanToggle" type="button" aria-expanded="true" aria-controls="aiPlanBody">
+                <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                  <path fill="currentColor" d="M7 10l5 5 5-5z" />
                 </svg>
-                <span id="whatsappBtnLabel">Iniciar abordagem no WhatsApp</span>
+                <span id="aiPlanToggleLabel">Ocultar detalhes</span>
               </button>
+
+              <button id="startPlanBtn" class="plan-btn" type="button" disabled>
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                  <path fill="currentColor" d="M13 2 3 14h7l-1 8 10-12h-7l1-8z" />
+                </svg>
+                <span id="planBtnLabel">Iniciar Plano de Ação</span>
+              </button>
+              <p class="plan-btn-note" id="planBtnNote">O agente de IA envia a primeira mensagem pelo WhatsApp.</p>
               <small class="ai-timestamp" id="aiGeneratedAt">Gerado por Predit AI</small>
             </div>
           </aside>
@@ -199,6 +213,19 @@
             <span class="status-pill" id="leadStatus">4 leads aguardando</span>
           </div>
           <div class="lead-list" id="leadList"></div>
+        </section>
+      </section>
+
+      <section class="view" id="tracking">
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Conversas conduzidas pela IA</p>
+              <h2>Acompanhamento de abordagens</h2>
+            </div>
+            <span class="status-pill" id="trackingStatus">Nenhuma abordagem iniciada</span>
+          </div>
+          <div class="tracking-list" id="trackingList"></div>
         </section>
       </section>
 

@@ -37,6 +37,17 @@ const customers = [
       whatsappMessage:
         "Oi Ana! Aqui é o assistente Predit da Ford Lapa 👋 Notei que a revisão da sua Ranger está com 62 dias de atraso e sua garantia vence em breve. Posso te ajudar a agendar um horário essa semana, com busca e entrega no seu endereço?",
     },
+    approach: {
+      status: "in_progress",
+      startedAt: "22 set. 2026 às 09:14",
+      log: [
+        {
+          from: "ai",
+          time: "09:14",
+          text: "Oi Ana! Aqui é o assistente Predit da Ford Lapa 👋 Notei que a revisão da sua Ranger está com 62 dias de atraso e sua garantia vence em breve. Posso te ajudar a agendar um horário essa semana, com busca e entrega no seu endereço?",
+        },
+      ],
+    },
   },
   {
     name: "Rafael Lima",
@@ -75,6 +86,7 @@ const customers = [
       whatsappMessage:
         "Rafael, tudo bem? Aqui é o assistente Predit da Ford Morumbi. Vimos que sua Bronco está há 8 meses sem passar por uma inspeção e identificamos uso mais intenso pelo app. Posso reservar um horário com a peça já separada pra você?",
     },
+    approach: { status: "not_started", log: [] },
   },
   {
     name: "Marina Costa",
@@ -112,6 +124,50 @@ const customers = [
       ],
       whatsappMessage:
         "Oi Marina! Aqui é o assistente Predit da Ford Campinas. Vi que não conseguimos falar com você na última campanha — sem problemas! Sua garantia vence em 72 dias e temos uma condição especial pra próxima revisão. Posso te mostrar as opções?",
+    },
+    approach: {
+      status: "needs_human",
+      startedAt: "22 set. 2026 às 10:05",
+      log: [
+        {
+          from: "ai",
+          time: "10:05",
+          text: "Oi Marina! Aqui é o assistente Predit da Ford Campinas. Vi que não conseguimos falar com você na última campanha — sem problemas! Sua garantia vence em 72 dias e temos uma condição especial pra próxima revisão. Posso te mostrar as opções?",
+        },
+        {
+          from: "customer",
+          time: "10:22",
+          text: "Meu amigo falou que eu não sou obrigada a revisar só na Ford pra manter a garantia, isso é verdade?",
+        },
+      ],
+      handoff: {
+        trigger:
+          "Perguntou se é obrigatório revisar na rede Ford. Tema jurídico (garantia) — a IA não responde sozinha.",
+        profile:
+          "Cliente fiel em risco: nunca revisou fora da rede, mas enfrentou uma espera longa em jun/25. Garantia vence em 18/10.",
+        topic: "Objeção: obrigatoriedade de revisão",
+        steps: [
+          "Dê razão a ela: pode revisar onde quiser, sem perder a garantia.",
+          "Explique o que muda na prática — na Ford, um defeito de fábrica já fica registrado no histórico; fora, ela precisa guardar nota fiscal detalhada de peças e óleo, e sem isso a cobertura pode ser negada.",
+          "Feche com um horário concreto, não com uma pergunta aberta.",
+        ],
+        neverSay:
+          "que a garantia cai se ela revisar fora da rede — isso é falso, e ela já ouviu o contrário de alguém.",
+        drafts: [
+          [
+            "Marina, aqui é o Rodrigo, consultor da Ford Campinas.",
+            "Seu amigo está certo: você pode fazer a revisão onde quiser, sem perder a garantia.",
+            "A diferença aparece se surgir algum defeito de fábrica. Fazendo aqui, fica tudo registrado no sistema da Ford — você não precisa provar nada. Fazendo fora, é preciso guardar nota fiscal detalhada das peças e do óleo usados, e sem isso a cobertura pode ser negada.",
+            "Sua garantia vai até 18/10. Quinta às 9h ou sábado às 8h, o que fica melhor pra você?",
+          ],
+          [
+            "Oi Marina, Rodrigo aqui, da Ford Campinas :)",
+            "Pra ser bem transparente: você não é obrigada a revisar só com a gente pra manter a garantia — isso vale em qualquer marca.",
+            "O que muda é a prova em caso de defeito de fábrica. Aqui na Ford já fica tudo no histórico do seu Maverick. Fora, você precisa guardar as notas fiscais certinhas de cada peça e óleo trocado.",
+            "Como sua garantia vence dia 18/10, que tal já garantirmos um horário? Tenho quinta 9h ou sábado 8h.",
+          ],
+        ],
+      },
     },
   },
   {
@@ -151,6 +207,7 @@ const customers = [
       whatsappMessage:
         "Bruno, tudo certo? Aqui é o assistente Predit da Ford Morumbi. Preparamos um atendimento exclusivo para o seu Mustang, com horário reservado e sem espera. Quer que eu já separe um horário essa semana?",
     },
+    approach: { status: "not_started", log: [] },
   },
   {
     name: "Camila Rocha",
@@ -187,6 +244,7 @@ const customers = [
       ],
       whatsappMessage: "",
     },
+    approach: { status: "not_started", log: [] },
   },
   {
     name: "Diego Nunes",
@@ -224,6 +282,24 @@ const customers = [
       ],
       whatsappMessage:
         "Oi Diego! Aqui é o assistente Predit da Ford Campinas. Seja bem-vindo à rede Ford! Sua primeira revisão do Territory está próxima e eu posso te ajudar a agendar com um consultor dedicado. Quer que eu já verifique os horários disponíveis?",
+    },
+    approach: {
+      status: "done",
+      startedAt: "22 set. 2026 às 09:40",
+      outcome: "Agendamento confirmado para sábado às 9h na Ford Campinas.",
+      log: [
+        {
+          from: "ai",
+          time: "09:40",
+          text: "Oi Diego! Aqui é o assistente Predit da Ford Campinas. Seja bem-vindo à rede Ford! Sua primeira revisão do Territory está próxima e eu posso te ajudar a agendar com um consultor dedicado. Quer que eu já verifique os horários disponíveis?",
+        },
+        { from: "customer", time: "09:58", text: "Pode ser sábado de manhã?" },
+        {
+          from: "ai",
+          time: "09:59",
+          text: "Perfeito, Diego! Agendamento confirmado para sábado às 9h na Ford Campinas. Te esperamos!",
+        },
+      ],
     },
   },
 ];
@@ -263,6 +339,10 @@ const titles = {
   overview: ["Retenção preditiva por VIN", "Identifique clientes em risco e acione a próxima melhor ação."],
   clients: ["Clientes em risco", "Entenda os fatores que explicam a propensão de evasão da rede oficial."],
   leads: ["Leads proativos", "Transforme score em tarefas práticas para a concessionária."],
+  tracking: [
+    "Acompanhamento de abordagens",
+    "Veja o que o agente de IA já conversou e onde ele precisa da sua entrada.",
+  ],
   campaigns: ["Campanhas inteligentes", "Use contexto e consentimento para criar relacionamento relevante."],
 };
 
@@ -399,24 +479,87 @@ function renderAiPlan(customer) {
   byId("aiWhatsappMessage").textContent =
     plan.whatsappMessage || "Nenhuma abordagem ativa recomendada no momento.";
 
-  const button = byId("startWhatsapp");
-  button.disabled = !plan.actionable;
-  button.classList.toggle("disabled", !plan.actionable);
-  byId("whatsappBtnLabel").textContent = plan.actionable
-    ? "Iniciar abordagem no WhatsApp"
-    : "Sem ação recomendada agora";
+  const button = byId("startPlanBtn");
+  const label = byId("planBtnLabel");
+  const note = byId("planBtnNote");
+  const status = customer.approach.status;
+
+  button.disabled = false;
+  button.classList.remove("disabled", "secondary", "alert");
+
+  if (!plan.actionable) {
+    button.disabled = true;
+    button.classList.add("disabled");
+    label.textContent = "Sem ação recomendada agora";
+    note.textContent = "O agente não identificou necessidade de contato ativo.";
+  } else if (status === "not_started") {
+    label.textContent = "Iniciar Plano de Ação";
+    note.textContent = "O agente de IA envia a primeira mensagem pelo WhatsApp.";
+  } else if (status === "in_progress") {
+    button.classList.add("secondary");
+    label.textContent = "Plano em andamento — ver acompanhamento";
+    note.textContent = "O agente já está conversando com o cliente pelo WhatsApp.";
+  } else if (status === "needs_human") {
+    button.classList.add("secondary", "alert");
+    label.textContent = "IA pediu apoio humano — ver caso";
+    note.textContent = "Pergunta fora do escopo da IA. Um consultor precisa responder.";
+  } else if (status === "done") {
+    button.classList.add("secondary");
+    label.textContent = "Plano concluído — ver histórico";
+    note.textContent = "Abordagem finalizada com sucesso.";
+  }
 }
 
-function openWhatsappForCustomer(customer) {
+let aiPlanCollapsed = false;
+
+function updateAiPlanToggle() {
+  const body = byId("aiPlanBody");
+  const toggle = byId("aiPlanToggle");
+  const label = byId("aiPlanToggleLabel");
+
+  body.classList.toggle("collapsed", aiPlanCollapsed);
+  toggle.classList.toggle("collapsed", aiPlanCollapsed);
+  toggle.setAttribute("aria-expanded", String(!aiPlanCollapsed));
+  label.textContent = aiPlanCollapsed ? "Ver detalhes" : "Ocultar detalhes";
+}
+
+function nowTimeLabel() {
+  return new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+}
+
+function sendWhatsappMessage(customer, text) {
+  const url = `https://wa.me/${customer.phone}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
+  window.open(url, "_blank", "noopener");
+}
+
+function startActionPlan(customer) {
   const plan = customer.aiPlan;
   if (!plan?.actionable) {
-    showToast(`${customer.name} está com baixo risco: nenhuma abordagem ativa recomendada agora.`);
+    showToast(`${customer.name} está com baixo risco: nenhuma ação recomendada agora.`);
     return;
   }
 
-  const url = `https://wa.me/${customer.phone}?text=${encodeURIComponent(plan.whatsappMessage)}`;
-  window.open(url, "_blank", "noopener");
-  showToast(`Agente de IA Predit iniciou abordagem no WhatsApp com ${customer.name}.`);
+  if (customer.approach.status !== "not_started") {
+    goToTrackingCard(customer);
+    return;
+  }
+
+  customer.approach.status = "in_progress";
+  customer.approach.startedAt = `agora (${nowTimeLabel()})`;
+  customer.approach.log = [{ from: "ai", time: nowTimeLabel(), text: plan.whatsappMessage }];
+
+  showToast(`Agente de IA Predit iniciou o Plano de Ação com ${customer.name} pelo WhatsApp.`);
+  renderAiPlan(customer);
+  renderLeads();
+  renderTracking();
+}
+
+function goToTrackingCard(customer) {
+  setView("tracking");
+  requestAnimationFrame(() => {
+    const card = document.getElementById(`track-${customer.vin}`);
+    card?.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
 }
 
 function renderModelBars() {
@@ -498,13 +641,181 @@ function renderLeads() {
         </div>
         <div class="lead-actions">
           <button data-action="app" data-vin="${customer.vin}">Enviar para app</button>
-          <button class="whatsapp-action" data-action="whatsapp" data-vin="${customer.vin}">Abordagem no WhatsApp</button>
+          <button class="plan-action" data-action="plan" data-vin="${customer.vin}">
+            ${customer.approach.status === "not_started" ? "Iniciar Plano de Ação" : "Ver acompanhamento"}
+          </button>
           <button data-action="schedule" data-vin="${customer.vin}">Criar agendamento</button>
           <button data-action="done" data-vin="${customer.vin}">${customer.leadStatus}</button>
         </div>
       `;
       list.appendChild(card);
     });
+}
+
+function chatBubbleLabel(entry, customer) {
+  if (entry.from === "ai") return "Agente IA";
+  if (entry.from === "consultant") return "Consultor";
+  return customer.name.split(" ")[0];
+}
+
+function renderHistory(customer) {
+  return customer.approach.log
+    .map(
+      (entry) => `
+        <div class="chat-bubble ${entry.from}">
+          <span>${chatBubbleLabel(entry, customer)} · ${entry.time}</span>
+          <p>${entry.text}</p>
+        </div>
+      `
+    )
+    .join("");
+}
+
+function renderTrackCard(customer) {
+  const { approach } = customer;
+  const ui = approach.ui ?? (approach.ui = {});
+  const historyBlock = `
+    <div class="track-history" ${ui.historyVisible ? "" : "hidden"}>
+      ${renderHistory(customer)}
+    </div>
+  `;
+
+  if (approach.status === "needs_human") {
+    const handoff = approach.handoff;
+    const draftLines = handoff.drafts[ui.draftIndex ?? 0];
+    const draftBlock = ui.draftVisible
+      ? `
+        <div class="track-draft">
+          <span class="track-label">O que o botão gera</span>
+          ${
+            ui.editing
+              ? `<textarea class="draft-edit">${draftLines.join("\n\n")}</textarea>`
+              : `<div class="draft-bubbles">${draftLines.map((line) => `<p>${line}</p>`).join("")}</div>`
+          }
+          <div class="track-actions">
+            <button class="whatsapp-btn small" data-action="send">Enviar</button>
+            <button class="ghost-btn" data-action="edit">${ui.editing ? "Concluir edição" : "Editar"}</button>
+            <button class="ghost-btn" data-action="regenerate">Gerar outra</button>
+          </div>
+          <p class="track-note">O texto nunca sai sem alguém apertar Enviar. O agente acelera a digitação, não transfere a decisão.</p>
+        </div>
+      `
+      : "";
+
+    return `
+      <article class="track-card needs-human" id="track-${customer.vin}" data-vin="${customer.vin}">
+        <div class="track-head">
+          <span class="assume-badge">● ASSUMIR</span>
+          <div class="track-title">
+            <strong>${customer.name}</strong>
+            <small>${customer.model} · Score ${customer.score}%</small>
+          </div>
+        </div>
+        <div class="track-block">
+          <span class="track-label">Perfil</span>
+          <p>${handoff.profile}</p>
+        </div>
+        <div class="track-block">
+          <span class="track-label">Chegou até você</span>
+          <p>${handoff.trigger}</p>
+        </div>
+        <div class="track-script">
+          <span class="track-label">Abordagem: ${handoff.topic}</span>
+          <ol>${handoff.steps.map((step) => `<li>${step}</li>`).join("")}</ol>
+          <div class="never-say"><strong>Nunca diga</strong> ${handoff.neverSay}</div>
+        </div>
+        <div class="track-actions">
+          <button class="ghost-btn accent" data-action="generate">✨ Gerar mensagem</button>
+          <button class="ghost-btn" data-action="history">${ui.historyVisible ? "Ocultar histórico" : "Ver histórico"}</button>
+          <button class="ghost-btn" data-action="defer">Passar adiante</button>
+        </div>
+        ${historyBlock}
+        ${draftBlock}
+      </article>
+    `;
+  }
+
+  if (approach.status === "in_progress") {
+    const lastMessage = approach.log[approach.log.length - 1];
+    return `
+      <article class="track-card in-progress" id="track-${customer.vin}" data-vin="${customer.vin}">
+        <div class="track-head">
+          <span class="progress-badge">● Em andamento</span>
+          <div class="track-title">
+            <strong>${customer.name}</strong>
+            <small>${customer.model} · Score ${customer.score}%</small>
+          </div>
+        </div>
+        <p class="track-last-msg">Última mensagem (${chatBubbleLabel(lastMessage, customer)}): "${lastMessage.text}"</p>
+        <div class="track-actions">
+          <button class="ghost-btn" data-action="history">${ui.historyVisible ? "Ocultar histórico" : "Ver histórico"}</button>
+          <button class="ghost-btn" data-action="assume">Assumir conversa</button>
+        </div>
+        ${historyBlock}
+      </article>
+    `;
+  }
+
+  if (approach.status === "deferred") {
+    return `
+      <article class="track-card deferred" id="track-${customer.vin}" data-vin="${customer.vin}">
+        <div class="track-head">
+          <span class="deferred-badge">↪ Repassado</span>
+          <div class="track-title">
+            <strong>${customer.name}</strong>
+            <small>${customer.model} · Score ${customer.score}%</small>
+          </div>
+        </div>
+        <p class="track-outcome">Caso repassado para outro consultor.</p>
+      </article>
+    `;
+  }
+
+  return `
+    <article class="track-card done" id="track-${customer.vin}" data-vin="${customer.vin}">
+      <div class="track-head">
+        <span class="done-badge">✓ Concluído</span>
+        <div class="track-title">
+          <strong>${customer.name}</strong>
+          <small>${customer.model} · Score ${customer.score}%</small>
+        </div>
+      </div>
+      <p class="track-outcome">${approach.outcome ?? "Abordagem concluída."}</p>
+      <div class="track-actions">
+        <button class="ghost-btn" data-action="history">${ui.historyVisible ? "Ocultar histórico" : "Ver histórico"}</button>
+      </div>
+      ${historyBlock}
+    </article>
+  `;
+}
+
+function renderTracking() {
+  const list = byId("trackingList");
+  if (!list) return;
+
+  const active = customers.filter((customer) => customer.approach.status !== "not_started");
+  const needsHuman = active.filter((customer) => customer.approach.status === "needs_human").length;
+  const inProgress = active.filter((customer) => customer.approach.status === "in_progress").length;
+
+  byId("trackingStatus").textContent = active.length
+    ? `${inProgress} em andamento · ${needsHuman} pedindo apoio`
+    : "Nenhuma abordagem iniciada";
+
+  const badge = byId("trackingBadge");
+  badge.hidden = needsHuman === 0;
+  badge.textContent = needsHuman;
+
+  if (!active.length) {
+    list.innerHTML = `<p class="muted">Nenhum plano de ação foi iniciado ainda. Volte em "Visão geral" ou "Leads proativos" e clique em "Iniciar Plano de Ação".</p>`;
+    return;
+  }
+
+  const order = { needs_human: 0, in_progress: 1, deferred: 2, done: 3 };
+  list.innerHTML = active
+    .slice()
+    .sort((a, b) => order[a.approach.status] - order[b.approach.status])
+    .map((customer) => renderTrackCard(customer))
+    .join("");
 }
 
 function renderCampaigns() {
@@ -576,6 +887,7 @@ function renderAll() {
   renderLeads();
   renderCampaigns();
   renderModelBars();
+  renderTracking();
 }
 
 document.querySelectorAll(".nav-button").forEach((button) => {
@@ -590,9 +902,14 @@ byId("activateCampaign").addEventListener("click", () => {
   showToast(`Campanha "${campaigns[selectedCampaign].title}" ativada como piloto.`);
 });
 
-byId("startWhatsapp").addEventListener("click", () => {
+byId("aiPlanToggle").addEventListener("click", () => {
+  aiPlanCollapsed = !aiPlanCollapsed;
+  updateAiPlanToggle();
+});
+
+byId("startPlanBtn").addEventListener("click", () => {
   const customer = customers.find((item) => item.vin === selectedVin);
-  if (customer) openWhatsappForCustomer(customer);
+  if (customer) startActionPlan(customer);
 });
 
 document.querySelectorAll(".scenario-buttons button").forEach((button) => {
@@ -609,8 +926,8 @@ byId("leadList").addEventListener("click", (event) => {
   if (button.dataset.action === "app") {
     showToast(`Mensagem enviada para o app de ${customer.name}.`);
   }
-  if (button.dataset.action === "whatsapp") {
-    openWhatsappForCustomer(customer);
+  if (button.dataset.action === "plan") {
+    startActionPlan(customer);
   }
   if (button.dataset.action === "schedule") {
     showToast(`Pré-agendamento criado para ${customer.dealer}.`);
@@ -622,5 +939,60 @@ byId("leadList").addEventListener("click", (event) => {
   }
 });
 
+byId("trackingList").addEventListener("click", (event) => {
+  const button = event.target.closest("button[data-action]");
+  if (!button) return;
+
+  const card = button.closest(".track-card");
+  const customer = customers.find((item) => item.vin === card?.dataset.vin);
+  if (!customer) return;
+
+  const ui = customer.approach.ui ?? (customer.approach.ui = {});
+
+  if (button.dataset.action === "history") {
+    ui.historyVisible = !ui.historyVisible;
+    renderTracking();
+  }
+  if (button.dataset.action === "generate") {
+    ui.draftVisible = true;
+    ui.draftIndex = 0;
+    ui.editing = false;
+    renderTracking();
+  }
+  if (button.dataset.action === "regenerate") {
+    ui.draftIndex = (( ui.draftIndex ?? 0) + 1) % customer.approach.handoff.drafts.length;
+    ui.editing = false;
+    renderTracking();
+  }
+  if (button.dataset.action === "edit") {
+    ui.editing = !ui.editing;
+    renderTracking();
+  }
+  if (button.dataset.action === "defer") {
+    customer.approach.status = "deferred";
+    showToast(`Caso de ${customer.name} repassado para outro consultor.`);
+    renderTracking();
+  }
+  if (button.dataset.action === "assume") {
+    sendWhatsappMessage(customer, "");
+    showToast(`Você assumiu a conversa com ${customer.name} no WhatsApp.`);
+  }
+  if (button.dataset.action === "send") {
+    const textarea = card.querySelector(".draft-edit");
+    const draftLines = customer.approach.handoff.drafts[ui.draftIndex ?? 0];
+    const text = textarea ? textarea.value : draftLines.join("\n\n");
+
+    sendWhatsappMessage(customer, text);
+    customer.approach.log.push({ from: "consultant", time: nowTimeLabel(), text });
+    customer.approach.status = "in_progress";
+    customer.approach.ui = {};
+
+    showToast(`Mensagem enviada por Rodrigo (consultor) para ${customer.name} via WhatsApp.`);
+    renderTracking();
+    if (selectedVin === customer.vin) renderAiPlan(customer);
+  }
+});
+
 renderAll();
 selectCustomer(selectedVin);
+updateAiPlanToggle();
